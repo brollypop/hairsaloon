@@ -1,0 +1,29 @@
+version:  '3'
+
+services:
+  database:
+    image: mysql:5.7
+    container_name: database
+    restart: always
+    environment:
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=db_password
+      - MYSQL_ROOT_PASSWORD=db_password
+      - MYSQL_DATABASE=hairsaloon
+    ports:
+      - 8766:3306
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: api
+    restart: always
+    ports:
+      - 8765:80
+    volumes:
+      - ./app:/var/www
+      - ./public:/var/www/html
+    working_dir: /var/www
+    depends_on:
+      - database

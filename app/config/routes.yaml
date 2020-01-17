@@ -1,0 +1,9 @@
+get_station_schedule:
+  path: /api/stations/{station}/schedule/{date}
+  controller: App\Controller\Station\ScheduleController::getScheduleAction
+  methods: GET
+
+put_station_schedule:
+  path: /api/stations/{station}/schedule/{date}
+  controller: App\Controller\Station\ScheduleController::putScheduleAction
+  methods: PUT
